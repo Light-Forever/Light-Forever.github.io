@@ -212,6 +212,29 @@ pre code {
     letter-spacing: -0.01em;
 }
 
+// -------- 全站底部封面图（custom.html 里的）--------
+.site-footer-cover {
+    margin: 4rem auto 1rem;
+    max-width: 100%;
+    text-align: center;
+
+    img {
+        width: 100%;
+        max-width: 96rem;       // 960px，避免超宽屏拉得太大
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 6px 24px rgba(15, 23, 42, 0.12);
+        display: inline-block;
+    }
+}
+
+@media (max-width: 720px) {
+    .site-footer-cover {
+        margin: 2.5rem auto 1rem;
+        img { border-radius: 8px; }
+    }
+}
+
 // -------- 聚合页（evaluation / course-notes / notes / thoughts）列表更舒服 --------
 .article-content {
     ul li,

@@ -45,7 +45,7 @@ params:
     - post
   featuredImageField: image
   rssFullContent: true
-  favicon: ""
+  favicon: img/favicon.png
 
   footer:
     since: 2021
@@ -168,7 +168,12 @@ menu:
       name: Email
       url: mailto:zhongshuhu2021@gmail.com
       params:
-        icon: link
+        icon: mail
+    - identifier: github
+      name: GitHub
+      url: https://github.com/Light-Forever
+      params:
+        icon: brand-github
 
 related:
   includeNewer: true
