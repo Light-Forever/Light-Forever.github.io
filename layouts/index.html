@@ -57,6 +57,11 @@
 
     {{- partial "pagination.html" . -}}
 
+    {{/* 首页底部排版式署名 —— 左右渐隐细线 + 中间斜体小字，像文学集结尾的 "fin" */}}
+    <section class="home-signature">
+        <p class="home-signature__line">Let the Light Forever</p>
+    </section>
+
     {{ partialCached "footer/footer" . }}
 {{ end }}
 
