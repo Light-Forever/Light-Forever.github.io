@@ -67,16 +67,16 @@ params:
     license:
       enabled: false
 
-  # 评论：配好真实 repoID / categoryID 后把 enabled 改回 true
   comments:
-    enabled: false
+    enabled: true
     provider: giscus
     giscus:
-      repo: 你的用户名/你的用户名.github.io
-      repoID: "REPLACE_WITH_REPO_ID"
+      repo: Light-Forever/Light-Forever.github.io
+      repoID: "R_kgDOSMYzbQ"
       category: Announcements
-      categoryID: "REPLACE_WITH_CATEGORY_ID"
+      categoryID: "DIC_kwDOSMYzbc4C7rLL"
       mapping: pathname
+      strict: "0"
       lightTheme: light
       darkTheme: dark_dimmed
       reactionsEnabled: 1

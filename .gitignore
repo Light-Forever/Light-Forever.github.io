@@ -1,0 +1,17 @@
+# Hugo 构建产物（GitHub Actions 会现场重建）
+/public/
+/resources/
+
+# Hugo 缓存
+.hugo_build.lock
+
+# 编辑器/系统垃圾
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 环境
+.env
+.env.local
