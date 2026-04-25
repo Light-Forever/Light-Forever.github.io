@@ -1,0 +1,65 @@
+{{ define "main" }}
+    {{/* 顶部欢迎条（紧凑版 section-card） */}}
+    <header>
+        <h3 class="section-title">{{ T "list.section" }}</h3>
+        <div class="section-card">
+            <div class="section-details">
+                <h3 class="section-count">{{ T "list.page" (len .Pages) }}</h3>
+                <h1 class="section-term">{{ .Title }}</h1>
+                {{ with .Params.description }}
+                    <h2 class="section-description">{{ . }}</h2>
+                {{ end }}
+            </div>
+        </div>
+    </header>
+
+    {{/* 原站风格 4 个入口卡片 —— 2x2 网格，带图标 */}}
+    <section class="home-intro-cards">
+        <a href="/evaluation/" class="home-intro-card">
+            <span class="home-intro-card__icon">📚</span>
+            <div class="home-intro-card__body">
+                <h2 class="home-intro-card__title">关于课程测评</h2>
+                <p class="home-intro-card__desc">就是我在 P 大上过的课的自己的测评啦，虽然可能参考意义不大也没有什么人看，但相当于给自己留个纪念叭 😊</p>
+            </div>
+        </a>
+        <a href="/course-notes/" class="home-intro-card">
+            <span class="home-intro-card__icon">📝</span>
+            <div class="home-intro-card__body">
+                <h2 class="home-intro-card__title">关于我的笔记</h2>
+                <p class="home-intro-card__desc">我上课时做的或者是考前复习时总结的笔记，仅供参考！其中错误与疏漏在所难免，欢迎向我反馈呀 😉</p>
+            </div>
+        </a>
+        <a href="/thoughts/" class="home-intro-card">
+            <span class="home-intro-card__icon">💭</span>
+            <div class="home-intro-card__body">
+                <h2 class="home-intro-card__title">关于随感录</h2>
+                <p class="home-intro-card__desc">大概就是随便写写的一些东西叭，可能是读书笔记 or 旅行随感 or 年度总结 or 日常有感 (￣︶￣)↗</p>
+            </div>
+        </a>
+        <a href="/question/" class="home-intro-card">
+            <span class="home-intro-card__icon">💌</span>
+            <div class="home-intro-card__body">
+                <h2 class="home-intro-card__title">向我提问</h2>
+                <p class="home-intro-card__desc">这里每个页面都设置有留言功能，前面的姓名邮箱是可写可不写的，不写默认为匿名，欢迎在提问页面向我提问呀</p>
+            </div>
+        </a>
+    </section>
+
+    {{/* 文章列表 */}}
+    {{ $paginator := partial "helper/paginator.html" . }}
+    {{ with $paginator }}
+        <section class="article-list--compact">
+            {{ range .Pages }}
+                {{ partial "article-list/compact" . }}
+            {{ end }}
+        </section>
+    {{ end }}
+
+    {{- partial "pagination.html" . -}}
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

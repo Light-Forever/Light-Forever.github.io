@@ -1,0 +1,20 @@
+# 覆盖主题 data/external.toml。
+# 为了让 KaTeX（数学公式渲染）在中国大陆也能较快加载，
+# 把 cdn.jsdelivr.net 换成阿里云维护的 npmmirror（境内直连，全球可访问）。
+# integrity 去除，因为镜像文件散列可能与上游不同。
+
+KaTeX = [
+    { src = "https://registry.npmmirror.com/katex/0.16.9/files/dist/katex.min.css", type = "style" },
+    { src = "https://registry.npmmirror.com/katex/0.16.9/files/dist/katex.min.js", type = "script", defer = true },
+    { src = "https://registry.npmmirror.com/katex/0.16.9/files/dist/contrib/auto-render.min.js", type = "script", defer = true },
+]
+
+Cactus = [
+    { src = "https://latest.cactus.chat/cactus.js", type = "script" },
+    { src = "https://latest.cactus.chat/style.css", type = "style" },
+]
+
+[PhotoSwipe]
+    Style    = "https://registry.npmmirror.com/photoswipe/5.4.4/files/dist/photoswipe.css"
+    Core     = "https://registry.npmmirror.com/photoswipe/5.4.4/files/dist/photoswipe.esm.min.js"
+    Lightbox = "https://registry.npmmirror.com/photoswipe/5.4.4/files/dist/photoswipe-lightbox.esm.min.js"

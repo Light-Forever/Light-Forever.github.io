@@ -1,0 +1,181 @@
+baseurl: https://Light-Forever.github.io/
+languageCode: zh-cn
+theme: stack
+title: World of Dreams
+
+DefaultContentLanguage: zh-cn
+hasCJKLanguage: true
+
+pagination:
+  pagerSize: 10
+
+permalinks:
+  post: /:year/:month/:day/:slug/
+  page: /:slug/
+
+services:
+  disqus:
+    shortname: ""
+  googleAnalytics:
+    id: ""
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  tableOfContents:
+    endLevel: 4
+    ordered: true
+    startLevel: 2
+  highlight:
+    noClasses: false
+    codeFences: true
+    guessSyntax: true
+    lineNoStart: 1
+    lineNos: true
+    lineNumbersInTable: true
+    tabWidth: 4
+
+params:
+  mainSections:
+    - post
+  featuredImageField: image
+  rssFullContent: true
+  favicon: ""
+
+  footer:
+    since: 2021
+    customText: "北京，中国 | 微信：hzs_2001_ | 邮箱：zhongshuhu2021@gmail.com"
+
+  dateFormat:
+    published: 2006-01-02
+    lastUpdated: 2006-01-02 15:04
+
+  sidebar:
+    emoji: 🌌
+    subtitle: "最近决定自己做一个个人博客，大概就是放一些自己的课程测评啦，课程笔记啦之类的东西，顺带一些自己的随感笔记"
+    avatar: img/avatar-home.png
+
+  article:
+    math: true
+    toc: true
+    readingTime: true
+    license:
+      enabled: false
+
+  # 评论：配好真实 repoID / categoryID 后把 enabled 改回 true
+  comments:
+    enabled: false
+    provider: giscus
+    giscus:
+      repo: 你的用户名/你的用户名.github.io
+      repoID: "REPLACE_WITH_REPO_ID"
+      category: Announcements
+      categoryID: "REPLACE_WITH_CATEGORY_ID"
+      mapping: pathname
+      lightTheme: light
+      darkTheme: dark_dimmed
+      reactionsEnabled: 1
+      emitMetadata: 0
+      inputPosition: top
+      lang: zh-CN
+      loading: lazy
+
+  widgets:
+    homepage:
+      - type: search
+      - type: archives
+        params:
+          limit: 5
+      - type: categories
+        params:
+          limit: 10
+      - type: tag-cloud
+        params:
+          limit: 10
+    page:
+      - type: toc
+
+  opengraph:
+    twitter:
+      site: ""
+      card: summary_large_image
+
+  colorScheme:
+    toggle: true
+    default: auto
+
+  imageProcessing:
+    cover:
+      enabled: true
+    content:
+      enabled: true
+
+menu:
+  main:
+    - identifier: home
+      name: 主页
+      url: /
+      weight: -100
+      params:
+        icon: home
+
+    - identifier: preface
+      name: 写在前面
+      url: /preface/
+      weight: 1
+
+    - identifier: about
+      name: 关于作者
+      url: /about/
+      weight: 2
+      params:
+        icon: user
+
+    - identifier: thoughts
+      name: 随感录
+      url: /thoughts/
+      weight: 3
+      params:
+        icon: messages
+
+    - identifier: course-review
+      name: 课程测评
+      url: /evaluation/
+      weight: 4
+
+    - identifier: course-notes
+      name: 课程笔记
+      url: /course-notes/
+      weight: 5
+
+    - identifier: notes
+      name: notes
+      url: /notes/
+      weight: 6
+
+    - identifier: resources
+      name: 一些资料
+      url: /resources/
+      weight: 7
+
+  social:
+    - identifier: email
+      name: Email
+      url: mailto:zhongshuhu2021@gmail.com
+      params:
+        icon: link
+
+related:
+  includeNewer: true
+  threshold: 60
+  toLower: false
+  indices:
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 200

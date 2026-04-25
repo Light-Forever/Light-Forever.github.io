@@ -1,0 +1,14 @@
+{{- $id := .Get "id" -}}
+{{- $type := .Get "type" | default "2" -}}
+{{- $height := .Get "height" | default "86" -}}
+<iframe
+  frameborder="no"
+  border="0"
+  marginwidth="0"
+  marginheight="0"
+  width="100%"
+  height="{{ $height }}"
+  src="//music.163.com/outchain/player?type={{ $type }}&id={{ $id }}&auto=0&height=66"
+  loading="lazy"
+  style="max-width: 330px;">
+</iframe>
