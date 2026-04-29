@@ -59,6 +59,9 @@ params:
     emoji: 🌌
     subtitle: "最近决定自己做一个个人博客，大概就是放一些自己的课程测评啦，课程笔记啦之类的东西，顺带一些自己的随感笔记"
     avatar: img/avatar-home.png
+    # 显式联系方式（在 layouts/_partials/sidebar/left.html 里渲染为 .sidebar-contact 块）
+    contact:
+      email: zhongshuhu2021@gmail.com
 
   article:
     math: true
@@ -128,6 +131,8 @@ menu:
       name: 写在前面
       url: /preface/
       weight: 1
+      params:
+        icon: book-open
 
     - identifier: about
       name: 关于作者
@@ -147,21 +152,22 @@ menu:
       name: 课程测评
       url: /evaluation/
       weight: 4
+      params:
+        icon: school
 
     - identifier: course-notes
       name: 课程笔记
       url: /course-notes/
       weight: 5
+      params:
+        icon: notebook
 
     - identifier: notes
       name: notes
       url: /notes/
       weight: 6
-
-    - identifier: resources
-      name: 一些资料
-      url: /resources/
-      weight: 7
+      params:
+        icon: code
 
   social:
     - identifier: email

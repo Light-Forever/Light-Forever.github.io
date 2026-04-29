@@ -79,6 +79,69 @@ pre code {
     aspect-ratio: 1 / 1;
 }
 
+// -------- 侧边栏可见的联系方式（邮箱 + 微信号）--------
+// 主题原版只放图标，鼠标悬停才显示 title。这里改为显式列出，邮箱仍可点
+// （`mailto:`，有邮件客户端会启动；没有的话也可以选中复制）。
+.sidebar-contact {
+    margin: 0.6rem auto 0;
+    padding: 0 var(--menu-padding-horizontal, 16px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+
+    &__line {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.2rem;
+        line-height: 1.4;
+        color: var(--card-text-color-tertiary);
+        text-decoration: none;
+        transition: color 0.2s ease;
+        word-break: break-all;
+        max-width: 100%;
+
+        svg {
+            flex-shrink: 0;
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 1.6;
+        }
+
+        // 长邮箱地址在窄侧边栏里允许换行
+        > span {
+            overflow-wrap: anywhere;
+        }
+    }
+
+    a.sidebar-contact__line:hover {
+        color: var(--accent-color);
+    }
+
+    // 微信号是静态文字（不可点），但允许选中复制
+    &__line--static {
+        cursor: text;
+        user-select: text;
+    }
+}
+
+// compact 模式让联系方式居中
+.sidebar.compact .sidebar-contact {
+    align-items: center;
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .sidebar-contact {
+        align-items: center;
+        text-align: center;
+    }
+}
+
 // -------- 首页 4 张入口卡片 --------
 .home-intro-cards {
     display: grid;
@@ -276,5 +339,182 @@ pre code {
     h3 {
         margin-top: 2.4rem;
         padding-top: 0.4rem;
+    }
+}
+
+// =========================================================================
+// 美学打磨（Task 6: Aesthetic Polish）
+// 目标：让站点不只是"够用"，而是有作为艺术品的审慎感。
+// =========================================================================
+
+// -------- ① 引用块：像一本书里被特别标注的段落 --------
+.article-content blockquote {
+    margin: 1.8rem 0;
+    padding: 0.6rem 1.6rem 0.6rem 1.8rem;
+    border-left: 3px solid var(--accent-color);
+    background: linear-gradient(
+        90deg,
+        rgba(59, 130, 246, 0.05),
+        rgba(59, 130, 246, 0)
+    );
+    border-radius: 0 8px 8px 0;
+    color: var(--card-text-color-secondary);
+    font-style: italic;
+
+    p {
+        margin: 0.6rem 0;
+        line-height: 1.8;
+    }
+
+    p:first-child { margin-top: 0; }
+    p:last-child  { margin-bottom: 0; }
+
+    // 嵌套引用更深
+    blockquote {
+        margin: 0.8rem 0;
+        border-left-color: var(--card-text-color-tertiary);
+    }
+}
+
+[data-scheme="dark"] .article-content blockquote {
+    background: linear-gradient(
+        90deg,
+        rgba(96, 165, 250, 0.08),
+        rgba(96, 165, 250, 0)
+    );
+}
+
+// -------- ② h2 的章节标记：标题左侧一根细色条 --------
+.article-content > h2 {
+    position: relative;
+    padding-left: 1rem;
+    margin-top: 2.8rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.32em;
+        bottom: 0.32em;
+        width: 3px;
+        background: linear-gradient(
+            180deg,
+            var(--accent-color),
+            var(--accent-color-darker)
+        );
+        border-radius: 2px;
+    }
+}
+
+.article-content > h3 {
+    margin-top: 2.2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: var(--card-text-color-main);
+}
+
+// -------- ③ 水平分隔线：✦ 三连点花饰 --------
+.article-content hr {
+    border: 0;
+    height: 2.4rem;
+    margin: 2.4rem 0;
+    background: none;
+    text-align: center;
+    overflow: visible;
+
+    &::after {
+        content: "✦  ✦  ✦";
+        display: inline-block;
+        color: var(--card-text-color-tertiary);
+        font-size: 1.1rem;
+        letter-spacing: 0.6em;
+        opacity: 0.6;
+    }
+}
+
+// -------- ④ sidebar-contact 上方加一道渐隐分隔线，和 home-signature 同语言 --------
+.sidebar-contact {
+    position: relative;
+    padding-top: 1rem;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--card-text-color-tertiary) 50%,
+            transparent
+        );
+        opacity: 0.35;
+    }
+}
+
+// -------- ⑤ 文本选中：用站点蓝，半透明 --------
+::selection {
+    background: rgba(59, 130, 246, 0.22);
+    color: inherit;
+}
+
+[data-scheme="dark"] ::selection {
+    background: rgba(96, 165, 250, 0.32);
+}
+
+// -------- ⑥ 链接 hover：颜色 + 微弱底纹的过渡更自然 --------
+.article-content a:not(.toc-link):hover {
+    background: rgba(59, 130, 246, 0.06);
+    border-radius: 2px;
+    padding: 0 2px;
+    margin: 0 -2px;
+}
+
+// -------- ⑦ 文章卡片 meta：让日期 / 阅读时间更不抢戏 --------
+// 注：compact.html 实际渲染是 article > a > .article-details > .article-meta > time
+.article-list article .article-meta,
+.article-list article .article-meta time,
+.article-list article .article-meta .article-description {
+    font-size: 1.3rem;
+    color: var(--card-text-color-tertiary);
+    letter-spacing: 0.02em;
+}
+
+// -------- ⑧ 主页 4 张卡片：emoji 字体兜底 + 微调尺寸 --------
+// 不同系统下 emoji 渲染差异很大（比如 Windows 上偏方扁），加字体栈兜底。
+.home-intro-card__icon {
+    font-family:
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Noto Color Emoji",
+        "Segoe UI Symbol",
+        sans-serif;
+    line-height: 1;
+}
+
+// -------- ⑨ 段落首尾留白更克制（针对纯文本随感类长文）--------
+.article-content > p {
+    margin: 1.1rem 0;
+    line-height: 1.85;
+}
+
+// -------- ⑩ 文章首段轻微"序章"感（仅文章页 main-article）--------
+// 第一段稍稍加大字号，制造缓缓进入正文的视觉节奏。
+// 注：Stack 主题文章页 wrapper 是 <article class="main-article">，不是 article-page。
+.main-article .article-content > p:first-of-type {
+    font-size: 1.7rem;
+    line-height: 1.85;
+    color: var(--card-text-color-secondary);
+}
+
+@media (max-width: 720px) {
+    .main-article .article-content > p:first-of-type {
+        font-size: 1.55rem;
     }
 }
